@@ -2,7 +2,7 @@ const express = require("express");
 require("dotenv").config();
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-// const routes = require("./routes");
+const routes = require("./routes");
 const app = express();
 const MONGO_URI = process.env.MONGO_URI;
 const PORT = process.env.PORT || 3001;
@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //add routes
-// app.use(routes);
+app.use(routes);
 
 //connect to the Mongo DB
 mongoose
