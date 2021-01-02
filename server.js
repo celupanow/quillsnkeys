@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === "production") {
 //add routes
 app.use(passport.initialize());
 require("./middleware/passport")(passport);
-app.use("/api/users/", require("./routes/api/users"));
+app.use("/api/user/", require("./routes/api/user"));
 app.use("/api/post/", require("./routes/api/post"));
 
 

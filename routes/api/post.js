@@ -41,7 +41,7 @@ router.get(
     (req, res) => {
        const author = req.user.username;
        const post = req.body;
-       const { errors, invalid } = validatePostInput(post);
+       const { errors, isValid } = validatePostInput(post);
        
        if (!isValid) {
           return res.status(400).json(errors);
@@ -59,7 +59,7 @@ router.get(
    "/update/:id",
    passport.authenticate("jwt", { session: false }),
    (req, res) => {
-      const author = req.user.user_name;
+      const author = req.user.username;
       const { errors, isValid } = validatePostInput(req.body);
       if (!isValid) {
          return res.status(400).json(errors);
@@ -81,7 +81,7 @@ router.delete(
    "/delete/:id",
    passport.authenticate("jwt", { session: false }),
    (req, res) => {
-      const author = req.user.user_name;
+      const author = req.user.username;
       Post.findOneAndDelete({ author, _id: req.params.id })
          .then(doc => res.status(200).json(doc))
          .catch(err =>

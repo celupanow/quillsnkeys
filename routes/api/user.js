@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const SECRET = process.env.SECRET;
 const validateSignUpInput = require("../../validation/signup");
 const validateLoginInput = require("../../validation/login");
-const User = require("../../models/User");
+const User = require("../../models/user");
 
 router.post ("/signup", (req, res) => {
     const {errors, isValid} = validateSignUpInput(req.body);
@@ -53,7 +53,7 @@ router.post("/login", (req, res) => {
           if (isMatch) {
              const payload = {
                 id: user.id,
-                user_name: user.user_name
+                username: User.username
              };
              jwt.sign(payload, SECRET, { expiresIn: 3600 }, (err, token) => {
                 if (err) {
